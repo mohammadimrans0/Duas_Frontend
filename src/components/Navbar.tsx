@@ -12,7 +12,7 @@ export default function Navbar() {
             <li><a href="#" className="hover:text-green-400">Home</a></li>
             <li><a href="#" className="hover:text-green-400">Categories</a></li>
             <li><a href="#" className="hover:text-green-400">About</a></li>
-            <li><button className="bg-green-400 rounded-3xl cursor-pointer px-4 py-2">Support Us</button></li>
+            <li><button className="bg-green-500 hover:bg-lime-500 rounded-3xl cursor-pointer px-4 py-2">Support Us</button></li>
             </ul>
         </div>
         </nav>

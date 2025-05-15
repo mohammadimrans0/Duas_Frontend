@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useEffect } from "react";
-import { useCategoryStore } from "@/store/useCategoryStore";
+import { useEffect } from "react"
+import { useCategoryStore } from "../store/useCategoryStore"
 
 export default function CategoryView() {
   const {
@@ -13,11 +13,11 @@ export default function CategoryView() {
     loadCategories,
     selectCategory,
     selectSubCategory,
-  } = useCategoryStore();
+  } = useCategoryStore()
 
   useEffect(() => {
-    loadCategories();
-  }, [loadCategories]);
+    loadCategories()
+  }, [loadCategories])
 
   return (
     <div className="h-[calc(100vh-100px)] overflow-y-auto pr-2">
@@ -28,9 +28,7 @@ export default function CategoryView() {
             <div
               onClick={() => selectCategory(category.id)}
               className={`cursor-pointer w-full text-left px-4 py-2 rounded ${
-                selectedCategory === category.id
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-100"
+                selectedCategory === category.id ? "bg-green-500 text-white" : "bg-gray-100"
               }`}
             >
               <p className="text-xl font-semibold">{category.cat_name_en}</p>
@@ -42,24 +40,23 @@ export default function CategoryView() {
             </div>
 
             {selectedCategory === category.id && (
-              <div className="mt-2 ml-4">
+              <div className="mt-2 ml-4 space-y-2">
                 {loading ? (
                   <p className="text-sm text-gray-500">Loading subcategories...</p>
                 ) : (
-                  <select
-                    onChange={(e) => selectSubCategory(Number(e.target.value))}
-                    value={selectedSubCategory ?? ""}
-                    className="w-full mt-2 p-2 border rounded"
-                  >
-                    <option value="" disabled>
-                      Select a subcategory
-                    </option>
+                  <div className="space-y-2">
                     {subCategories.map((sub) => (
-                      <option key={sub.id} value={sub.id}>
+                      <button
+                        key={sub.id}
+                        onClick={() => selectSubCategory(sub.id)}
+                        className={`w-full text-left px-3 py-2 rounded text-sm ${
+                          selectedSubCategory === sub.id ? "bg-lime-500 text-white" : "bg-gray-50 hover:bg-gray-200 cursor-pointer"
+                        }`}
+                      >
                         {sub.subcat_name_en}
-                      </option>
+                      </button>
                     ))}
-                  </select>
+                  </div>
                 )}
               </div>
             )}
@@ -67,5 +64,5 @@ export default function CategoryView() {
         ))}
       </ul>
     </div>
-  );
+  )
 }
